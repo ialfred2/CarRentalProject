@@ -1,0 +1,88 @@
+public class Car implements Comparable { // According to UML diagram Car class implements Comparable Interface
+    private String make; // Make of the car
+    private String model; // Model of the car
+    private String color; // Color of the car
+    private String year; // Year of the car
+    private String VIN; // Car's Identification number
+    private int noOfDoors; // Number of doors on car
+    private int noOfSeats; // Number of seats in car
+    private int noOfSuitcases; // Number of suitcases in the car
+    private int noOfBags; // Number of bags in the car
+    private Boolean rented;// Is the car rented?
+
+    public Car(String make, String model, String color, String year) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.year = year;
+        rented = false;
+    }
+
+    // Assigning passed value to the VIN field
+    public void setVIN(String vin) {
+        this.VIN = vin;
+    }
+
+    // Assigning the passed values of door and seat to the noOfDoors and noOfSeats
+    public void setSize(int door, int seat) {
+        this.noOfDoors = door;
+        this.noOfSeats = seat;
+    }
+
+    // Assigning the passed values of suitcase and bag to noOfSuitcases and noOfBags correspondingly
+    public void setLuggage(int suitcase, int bag) {
+        this.noOfSuitcases = suitcase;
+        this.noOfBags = bag;
+    }
+
+    // Assigning status to rented field class
+    public void setRented(Boolean status) {
+        this.rented = status;
+
+    }
+
+    public String getCarInfo() {
+        return this.make + "," + this.model + "," + this.year + "," + this.color;
+    }
+
+
+    // A method that returns true if VIN is the same as the objects VIN
+    public Boolean isSameCar(Car car) {
+        if (this.VIN == car.VIN) {
+            return true;
+        }
+        // Otherwise returns false
+        else {
+            return false;
+        }
+    }
+
+    /// A method that finds the car category based on given information
+    public String getCategory() {
+        if (this.noOfDoors == 4 && this.noOfSeats == 5 && this.noOfSuitcases == 1 && this.noOfBags == 1) {
+            return "Economy";
+
+        } else if (this.noOfDoors == 4 && this.noOfSeats == 5 && this.noOfSuitcases == 1 && this.noOfBags == 2) {
+            return "Compact";
+        } else if (this.noOfDoors == 4 && this.noOfSeats == 5 && this.noOfSuitcases == 2 && this.noOfBags == 1) {
+            return "Mid-size(Standard)";
+        } else if (this.noOfDoors == 4 && this.noOfSeats == 5 && this.noOfSuitcases == 2 && this.noOfBags == 2) {
+            return "Full-size(Premium)";
+        } else if (noOfDoors == 2 && this.noOfSeats == 4 && this.noOfSuitcases == 1 && this.noOfBags == 1) {
+            return "Convertible";
+        } else {
+            return "Invalid category";
+        }
+    }
+
+
+    public Boolean isRented() {
+        return rented;
+    }
+
+// Method is implemented so the output format is proper
+    public String toString() {
+        return String.format("%-18s %-11s %-16s %-15s", this.make + "," + this.model, this.year + "-" + this.color, this.VIN, getCategory());
+
+    }
+}
