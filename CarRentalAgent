@@ -1,0 +1,79 @@
+import java.util.ArrayList;
+
+public class CarRentalAgent  {
+    private String companyName; // Car rental company name
+    private String address; // Car rental company address
+    private ArrayList<Car> CarInventory = new ArrayList<Car>();
+
+    public CarRentalAgent(String name, String address) {
+        companyName = name;
+        this.address = address;
+
+
+
+
+    }
+// Method returns true if the car is not in the inventory
+    public Boolean addInventory(Car car) {
+        if (CarInventory.isEmpty()) {
+            CarInventory.add(car);
+            return true;
+        }
+        else {
+            for (int i=0 ; i < CarInventory.size() ; i++) {
+                if (car.isSameCar(CarInventory.get(i)) == false) {
+                    CarInventory.add(car);
+                    return true;
+                }
+                // Or returns false without adding the car
+                else {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    // Method returns true if the car is not rented
+    public Boolean rentCar(Car car) {
+        if (car.isRented() == false) {
+            car.setRented(true);
+            return true;
+
+            // Or returns false
+        } else {
+            return false;
+        }
+    }
+
+// Returns false is the
+    public Boolean returnCar(Car car) {
+        for (int i=0 ; i < CarInventory.size() ; i++) {
+            if (CarInventory.get(i) == car && car.isRented()) {
+                car.setRented(false);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+// Method prints out list of cars
+    public void printInventory() {
+        System.out.println("Agent Name:" + this.companyName + "\nAgent Address:" + this.address);
+        System.out.println("\n Car model and make Year-color  VIN               Category");
+        System.out.println("------------------ ----------- ----------------- ------------------\n");
+
+        for (Car car : CarInventory) {
+            System.out.println(car);
+        }
+
+
+
+
+
+    }
+}
