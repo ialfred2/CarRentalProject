@@ -1,0 +1,11 @@
+//Defines three methods
+public interface Comparable {
+    // isSameCar method
+    public Boolean isSameCar(Car car);
+
+    // getCategory method
+    public String getCategory();
+
+    // isRented method
+    public Boolean isRented();
+}
